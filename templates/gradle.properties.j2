@@ -1,0 +1,7 @@
+systemProp.http.proxyHost={{ params.proxy.host }}
+systemProp.http.proxyPort={{ params.proxy.port }}
+systemProp.http.nonProxyHosts={{ params.proxy.no_proxy|replace(",", "|") }}
+
+systemProp.https.proxyHost={{ params.proxy.host }}
+systemProp.https.proxyPort={{ params.proxy.port }}
+systemProp.https.nonProxyHosts={{ params.proxy.no_proxy|replace(",", "|")}}

@@ -1,0 +1,69 @@
+---
+- name: Add package repositories
+  apt_repository: repo={{ item }} state=present
+  with_items:
+#    - "deb [trusted=yes] http://swrepo.i-faber.host/sw/debs/ ./"
+    - "ppa:cwchien/gradle"
+    - "ppa:git-core/ppa"
+  become: True
+  become_flags: '-E'
+
+#- name: Update packages to the latest version
+#  apt: upgrade=dist cache_valid_time=3600
+#  become: True
+#  become_flags: '-E'
+
+- name: Install required applications
+  apt: name={{ item }} state=latest allow_unauthenticated=yes cache_valid_time=3600
+  with_items:
+    - ant
+    - build-essential
+    - git
+    - gradle-ppa
+    - htop
+    - libaio1
+    - libpq-dev
+    - realpath
+    - subversion 
+    - terminator
+    - xvfb
+  become: True
+  become_flags: '-E'
+  become_method: sudo
+
+# If "mountebank" fails to install try manually (in a shell) without shrinkwrap, like so:
+# sudo npm install --global --no-shrinkwrap mountebank
+#- name: Install node.js applications
+#  npm: name={{ item }} global=yes state=latest
+#  with_items:
+#    - npm
+#    - bower
+#    - grunt-cli
+#    - mountebank
+#  become: True
+
+#- name: Ensure that RVM commands are available
+#  lineinfile:
+#    dest='/home/{{ params.user.username }}/.bashrc'
+#    line='[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"'
+#    state=present
+#  become: True
+#  become_user: '{{ params.user.username }}'
+
+#- name: Install Ruby gems
+#  command: 'gem install {{ item }}'
+#  with_items:
+#    - bundler
+#    - compass
+#  become: True
+#  become_user: '{{ params.user.username }}'
+#  become_flags: '-i'
+#  register: gem_install
+
+#- name: Update Ruby gems
+#  command: 'gem update'
+#  become: True
+#  become_user: '{{ params.user.username }}'
+#  become_flags: '-i'
+#  register: gem_update
+#  changed_when: '"Nothing to update" not in gem_update.stdout_lines'

@@ -1,0 +1,10 @@
+---
+- name: Create Gradle configuration directory
+  file: name=/home/{{ params.user.username }}/.gradle state=directory
+  become: True
+  become_user: "{{ params.user.username }}"
+
+- name: Create Gradle configuration file
+  template: src=gradle.properties.j2 dest=/home/{{ params.user.username }}/.gradle/gradle.properties
+  become: True
+  become_user: "{{ params.user.username }}"

@@ -1,0 +1,34 @@
+---
+- name: Install the tnsnames file
+  copy: src=files/tnsnames.ora dest=/usr/lib/oracle/11.2/client64/network/admin/ force=yes
+  become: True
+
+- name: Configure environment variables
+  lineinfile: line={{ item }} dest=/etc/environment create=yes
+  with_items:
+    - 'ORACLE_HOME="/usr/lib/oracle/11.2/client64"'
+    - 'NS_ADMIN="/usr/lib/oracle/11.2/client64/network/admin"'
+    - 'NLS_LANG="AMERICAN_AMERICA.AL32UTF8"'
+    - 'LD_LIBRARY_PATH="/usr/lib/oracle/11.2/client64/lib"'
+#    - 'spring_profiles_active="dev,dev-milan"'
+  become: True
+
+#- name: Configure Git for the development user
+#  git_config: name={{ item.name }} value={{ item.value }} scope=global
+#  with_items:
+#    - { name: user.name, value: "{{ params.user.fullname }}" }
+#    - { name: user.email, value: "{{ params.user.email }}" }
+#    - { name: credential.helper, value: store }
+#    - { name: http.proxy, value: "{{ params.proxy.protocol }}://{{ params.proxy.host }}:{{ params.proxy.port }}" }
+#    - { name: https.proxy, value: "{{ params.proxy.protocol }}://{{ params.proxy.host }}:{{ params.proxy.port }}" }
+#  become: True
+#  become_user: "{{ params.user.username }}"
+
+#- name: Populate the Git credentials file
+#  lineinfile:
+#    line=http://{{ params.user.email | urlencode }}:{{ params.git.password | urlencode }}@git.i-faber.host
+#    dest=/home/{{ params.user.username }}/.git-credentials
+#    create=yes
+#    state=present
+#  become: True
+#  become_user: "{{ params.user.username }}"

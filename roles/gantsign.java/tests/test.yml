@@ -1,0 +1,23 @@
+---
+- hosts: all
+  remote_user: root
+
+  pre_tasks:
+    - name: install Ansible dnf dependency (dnf)
+      become: yes
+      command: dnf install -y python2-dnf
+      args:
+        warn: no
+      changed_when: no
+      when: ansible_pkg_mgr == 'dnf'
+
+    - name: install Ansible zypper dependency (zypper)
+      become: yes
+      command: zypper install -y python-xml
+      args:
+        warn: no
+      changed_when: no
+      when: ansible_pkg_mgr == 'zypper'
+
+  roles:
+    - ansible-role-java

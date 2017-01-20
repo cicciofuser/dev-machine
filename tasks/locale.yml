@@ -1,0 +1,10 @@
+---
+- name: Check current locale configuration
+  command: "localectl status"
+  register: localectl_status
+  changed_when: False
+
+- name: Set italian locale for the keyboard
+  command: "localectl set-keymap it"
+  become: True
+  when: "'VC Keymap: it' not in localectl_status.stdout"

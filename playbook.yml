@@ -1,0 +1,31 @@
+---
+- hosts: all
+  vars: 
+    intellij_default_jdk_home: 
+
+  pre_tasks:
+#    - include: tasks/requirements.yml    
+#    - include: tasks/hosts.yml
+    - include: tasks/locale.yml
+#    - include: tasks/user.yml
+
+  roles:
+#    - { role: alexeymedvedchikov.rabbitmq, rabbitmq_users_removed: [], become: True }
+#    - { role: ANXS.postgresql, postgresql_version: '9.5', become: True }    
+#    - { role: silpion.java} #, java_oracle_version: '8u101' }
+    - { role: gantsign.java, java_license_declaration: 'I accept the "Oracle Binary Code License Agreement for the Java SE Platform Products and JavaFX" under the terms at http://www.oracle.com/technetwork/java/javase/terms/license/index.html' }
+    - { role: gantsign.maven }
+    - { role: smola.java, java_packages: oracle-java6-installer, sudo: yes}
+#    - { role: gantsign.intellij, intellij_default_jdk: '1.8', intellij_default_jdk_home: '/opt/java/oracle/jdk1.8.0_102' } #, intellij_jdks.name: '1.8', intellij_jdks.home: '/opt/java/oracle/jdk1.8.0_102'}
+#    - { role: geerlingguy.nodejs, nodejs_version: '6.x', become: True }
+#    - role: rvm_io.rvm1-ruby
+#      rvm1_rubies: [ 'ruby-2.3.1' ]
+#      rvm1_user: '{{ params.user.username }}'
+#      rvm1_install_flags: '--auto-dotfiles --user-install'
+#      rvm1_install_path: '/home/{{ params.user.username }}/.rvm'
+#     become: True
+
+  tasks:
+    - include: tasks/packages.yml
+    - include: tasks/configure.yml
+#   - include: tasks/proxy.yml

@@ -1,0 +1,21 @@
+PLDSVIL =
+	(DESCRIPTION = 
+		(ADDRESS = (PROTOCOL = TCP) (HOST = padbsvil02.resource.unicreditgroup.eu) (PORT = 1521))
+		(CONNECT_DATA = (SERVICE_NAME = PLDSVIL.i-faber.com)
+	)
+)
+
+SEPLDSVL =
+	(DESCRIPTION =
+		(ADDRESS = (PROTOCOL = TCP) (HOST = padbsvil02.resource.unicreditgroup.eu) (PORT = 1522))
+		(CONNECT_DATA = (SID = SEPLDSVL)
+	)
+)
+
+XE =
+	(DESCRIPTION =
+		(ADDRESS = (PROTOCOL = TCP) (HOST = 10.233.181.212) (PORT = 1521))
+		(CONNECT_DATA = (SID = XE)
+	)
+)
+

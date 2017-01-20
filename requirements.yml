@@ -1,0 +1,13 @@
+---
+- src: https://github.com/viruzzo/ansible-rabbitmq
+  name: alexeymedvedchikov.rabbitmq
+- src: https://github.com/silpion/ansible-java
+  name: silpion.java
+- src: ANXS.postgresql
+- src: geerlingguy.nodejs
+- src: rvm_io.rvm1-ruby
+- src: gantsign.intellij
+- src: smola.java
+- src: gantsign.maven
+- src: gantsign.java
+
